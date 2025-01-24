@@ -1,0 +1,20 @@
+footer {
+    position: relative;
+    bottom: 0;
+}
+footer, .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+    padding: 10px;
+}
+
+.element {
+    margin: 20px;
+    padding: 10px;
+}
+
+strong {
+    display: block;
+}
