@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { ResumeCard } from '../models/resume-card';
 
 @Component({
   selector: 'app-resume-card',
@@ -7,5 +8,5 @@ import { Component } from '@angular/core';
   styleUrl: './resume-card.component.scss'
 })
 export class ResumeCardComponent {
-
+  @Input() resumeCard!: ResumeCard;
 }

@@ -15,6 +15,6 @@ export class LandingPageComponent {
   }
 
   onProject() {
-    this.router.navigateByUrl('project');
+    this.router.navigateByUrl('projects');
   }
 }

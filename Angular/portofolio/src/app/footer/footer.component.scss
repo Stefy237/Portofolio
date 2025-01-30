@@ -1,8 +1,23 @@
-footer {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
+:host {
+    display: flex;
+    flex-direction: column;
+    min-height: 20vh;
 }
+
+footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: white;
+    color: #333;
+    text-align: center;
+    padding: 10px 0;
+    opacity: 0;
+    visibility: hidden;
+    
+}
+
 footer, .container {
     display: flex;
     justify-content: space-between;
@@ -18,4 +33,9 @@ footer, .container {
 
 strong {
     display: block;
+}
+  
+footer.show {
+    opacity: 1; 
+    visibility: visible;
 }
