@@ -1,0 +1,22 @@
+# Dépendances et build
+node_modules/
+dist/
+.astro/
+
+# Variables d'environnement (ne jamais versionner un token)
+.env
+.env.*
+!.env.example
+
+# Terraform : état et secrets
+infra/terraform/.terraform/
+infra/terraform/*.tfstate
+infra/terraform/*.tfstate.*
+infra/terraform/terraform.tfvars
+infra/terraform/.terraform.lock.hcl.bak
+
+# Divers
+.DS_Store
+*.log
+.vscode/
+.idea/

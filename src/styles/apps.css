@@ -1,0 +1,329 @@
+/*
+ * Contenu des applications : mêmes styles dans une fenêtre du bureau et dans la version simple.
+ */
+
+.app {
+  display: flex;
+  flex-direction: column;
+  gap: 26px;
+}
+
+.app-block {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.app-block > h3 {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.app-lead {
+  font-size: 1.05rem;
+  color: var(--text-2);
+}
+
+/* Entrée de liste (expérience, projet, certification…) */
+.entry {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 14px 0;
+  border-top: 1px solid var(--border);
+}
+.entry:first-of-type {
+  border-top: none;
+  padding-top: 0;
+}
+.entry__head {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 4px 12px;
+}
+.entry__title {
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0;
+}
+.entry__meta {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--muted);
+}
+.entry__text {
+  color: var(--text-2);
+}
+.entry ul.bullets {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding-left: 18px;
+  color: var(--text-2);
+}
+
+/* Liste compacte (expériences secondaires, services…) */
+.rows {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+}
+.rows li {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 4px 12px;
+  padding: 9px 0;
+  border-top: 1px solid var(--border);
+}
+.rows li:first-child {
+  border-top: none;
+}
+.rows .entry__meta {
+  white-space: nowrap;
+}
+
+/* Compétences */
+.skills {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.skills li {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 10px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-size: 0.875rem;
+}
+.skills .skill-context {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--muted);
+}
+
+/* Projet mis en avant */
+.project {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 16px 0;
+  border-top: 1px solid var(--border);
+}
+.project:first-of-type {
+  border-top: none;
+  padding-top: 4px;
+}
+.project__name {
+  font-family: var(--font-mono);
+  font-size: 1.05rem;
+  font-weight: 500;
+  letter-spacing: 0;
+}
+.project__facts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 14px;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--muted);
+}
+
+/* Encadré explicatif */
+.callout {
+  display: flex;
+  gap: 14px;
+  padding: 16px 18px;
+  border-radius: var(--radius-l);
+  background: var(--accent-soft);
+  color: var(--text);
+}
+.callout .icon {
+  flex-shrink: 0;
+  color: var(--accent-strong);
+}
+.callout h3 {
+  font-size: 1rem;
+  margin-bottom: 4px;
+}
+.callout p {
+  color: var(--text-2);
+  font-size: 0.9rem;
+}
+
+/* Citation (recommandations) */
+.quote {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 18px 0;
+  border-top: 1px solid var(--border);
+}
+.quote:first-of-type {
+  border-top: none;
+  padding-top: 0;
+}
+.quote blockquote {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 500;
+  line-height: 1.45;
+}
+.quote figcaption {
+  font-size: 0.875rem;
+  color: var(--muted);
+}
+.quote figcaption b {
+  color: var(--text);
+  font-weight: 600;
+}
+
+/* Faits clés (dossier) */
+.facts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 14px;
+  margin: 0;
+}
+.facts div {
+  display: flex;
+  flex-direction: column;
+}
+.facts dt {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--muted);
+}
+.facts dd {
+  margin: 0;
+  font-weight: 600;
+}
+
+/* Fichiers (dossier) */
+.files {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+}
+.files a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 44px;
+  padding: 8px 0;
+  border-top: 1px solid var(--border);
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+}
+.files li:first-child a {
+  border-top: none;
+}
+
+/* Vidéo et intégrations */
+.embed {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border: 0;
+  border-radius: var(--radius-m);
+  background: var(--surface-sunken);
+}
+.embed--linkedin {
+  aspect-ratio: auto;
+  height: 520px;
+  background: #ffffff;
+}
+
+/* Questions (FAQ) */
+.qa {
+  border-top: 1px solid var(--border);
+}
+.qa:first-of-type {
+  border-top: none;
+}
+.qa summary {
+  display: flex;
+  align-items: center;
+  min-height: 48px;
+  padding: 10px 0;
+  font-weight: 600;
+  cursor: pointer;
+  list-style-position: inside;
+}
+.qa p {
+  padding: 0 0 14px;
+  color: var(--text-2);
+}
+
+/* Tableau (marché) */
+.table-wrap {
+  overflow-x: auto;
+}
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+}
+.table th {
+  text-align: left;
+  padding: 8px 8px 8px 0;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 500;
+  color: var(--muted);
+  border-bottom: 1px solid var(--border-strong);
+}
+.table td {
+  padding: 9px 8px 9px 0;
+  border-bottom: 1px solid var(--border);
+}
+.table .num {
+  text-align: right;
+  font-family: var(--font-mono);
+  white-space: nowrap;
+}
+.table tr.is-home td {
+  font-weight: 600;
+}
+
+/* Profil (à propos) */
+.profile {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 18px;
+}
+.avatar {
+  width: 88px;
+  height: 88px;
+  border-radius: 50%;
+  object-fit: cover;
+  background: var(--surface-sunken);
+  display: grid;
+  place-items: center;
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--text-2);
+  flex-shrink: 0;
+}
+.profile h3 {
+  font-size: 1.6rem;
+}
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}

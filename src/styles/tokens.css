@@ -1,0 +1,144 @@
+/*
+ * Jetons de design : couleurs, typographie, rayons, ombres.
+ * Thème clair par défaut ; thème sombre si le système le demande (sauf choix explicite « clair »)
+ * ou si l'utilisateur l'a choisi (attribut data-theme="dark" sur <html>).
+ */
+
+:root {
+  color-scheme: light;
+
+  /* Fond du bureau */
+  --desk-bg: #e7e9e4;
+  --desk-dot: #cfd3cb;
+  --desk-watermark: #dcdfd8;
+
+  /* Surfaces */
+  --surface: #ffffff;
+  --surface-2: #f5f6f3;
+  --surface-sunken: #eceee9;
+  --bar: #f1f2ee;
+  --menubar: rgba(250, 250, 248, 0.86);
+  --dock: rgba(255, 255, 255, 0.78);
+  --border: #d7dad3;
+  --border-strong: #c3c8bf;
+
+  /* Texte */
+  --text: #16181d;
+  --text-2: #3d424a;
+  --muted: #5b616b;
+
+  /* Accent (contraste AA sur blanc) */
+  --accent: #0f766e;
+  --accent-strong: #0b5a54;
+  --accent-soft: #e3f1ee;
+  --on-accent: #ffffff;
+  --warn: #9a4a06;
+  --warn-soft: #fbefe3;
+
+  /* Terminal : toujours sombre, même en thème clair */
+  --term-bg: #0d1117;
+  --term-text: #e6edf3;
+  --term-muted: #9ba5b1;
+  --term-prompt: #5eead4;
+  --term-error: #ff8e8e;
+  --term-accent: #f5c46b;
+
+  /* Graphe de contributions (5 niveaux) */
+  --contrib-0: #e2e5df;
+  --contrib-1: #a9dbd3;
+  --contrib-2: #5fb6aa;
+  --contrib-3: #1f8f82;
+  --contrib-4: #0f6b63;
+
+  /* Post-it */
+  --note-bg: #fde68a;
+  --note-text: #1c1917;
+
+  /* Emplacements « à compléter » (développement uniquement) */
+  --todo-bg: #fff7e6;
+  --todo-border: #d29a3a;
+  --todo-text: #7a4a07;
+
+  --shadow-window: 0 24px 48px -18px rgba(22, 24, 29, 0.28), 0 2px 6px rgba(22, 24, 29, 0.08);
+  --shadow-dock: 0 12px 30px -12px rgba(22, 24, 29, 0.3);
+
+  --font-sans: 'IBM Plex Sans', system-ui, sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
+  --font-display: 'Schibsted Grotesk', 'IBM Plex Sans', system-ui, sans-serif;
+
+  --radius-s: 6px;
+  --radius-m: 10px;
+  --radius-l: 14px;
+
+  --menubar-h: 36px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    color-scheme: dark;
+    --desk-bg: #13181e;
+    --desk-dot: #232b35;
+    --desk-watermark: #1a2129;
+    --surface: #161b22;
+    --surface-2: #1b2129;
+    --surface-sunken: #0f1318;
+    --bar: #0f1318;
+    --menubar: rgba(11, 14, 18, 0.88);
+    --dock: rgba(15, 19, 24, 0.82);
+    --border: #2a313c;
+    --border-strong: #3a4452;
+    --text: #e6edf3;
+    --text-2: #c9d1d9;
+    --muted: #9ba5b1;
+    --accent: #2dd4bf;
+    --accent-strong: #5eead4;
+    --accent-soft: #10302d;
+    --on-accent: #0b0f14;
+    --warn: #f5a524;
+    --warn-soft: #2e2412;
+    --contrib-0: #1f262f;
+    --contrib-1: #0e4f4a;
+    --contrib-2: #127a70;
+    --contrib-3: #1fa898;
+    --contrib-4: #2dd4bf;
+    --todo-bg: #2b2414;
+    --todo-border: #a07a2c;
+    --todo-text: #f3d08a;
+    --shadow-window: 0 30px 60px -20px rgba(0, 0, 0, 0.7);
+    --shadow-dock: 0 12px 30px -12px rgba(0, 0, 0, 0.6);
+  }
+}
+
+:root[data-theme='dark'] {
+  color-scheme: dark;
+  --desk-bg: #13181e;
+  --desk-dot: #232b35;
+  --desk-watermark: #1a2129;
+  --surface: #161b22;
+  --surface-2: #1b2129;
+  --surface-sunken: #0f1318;
+  --bar: #0f1318;
+  --menubar: rgba(11, 14, 18, 0.88);
+  --dock: rgba(15, 19, 24, 0.82);
+  --border: #2a313c;
+  --border-strong: #3a4452;
+  --text: #e6edf3;
+  --text-2: #c9d1d9;
+  --muted: #9ba5b1;
+  --accent: #2dd4bf;
+  --accent-strong: #5eead4;
+  --accent-soft: #10302d;
+  --on-accent: #0b0f14;
+  --warn: #f5a524;
+  --warn-soft: #2e2412;
+  --contrib-0: #1f262f;
+  --contrib-1: #0e4f4a;
+  --contrib-2: #127a70;
+  --contrib-3: #1fa898;
+  --contrib-4: #2dd4bf;
+  --todo-bg: #2b2414;
+  --todo-border: #a07a2c;
+  --todo-text: #f3d08a;
+  --shadow-window: 0 30px 60px -20px rgba(0, 0, 0, 0.7);
+  --shadow-dock: 0 12px 30px -12px rgba(0, 0, 0, 0.6);
+}

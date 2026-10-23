@@ -1,0 +1,54 @@
+# Déploiement sur Cloudflare Pages à chaque push sur main (ou à la demande).
+# Prérequis (voir AVANCEMENT.md, « Mettre en ligne ») :
+#   - secrets du dépôt : CLOUDFLARE_API_TOKEN, CLOUDFLARE_ACCOUNT_ID
+#   - variables du dépôt : CF_PAGES_PROJECT (nom du projet Pages), SITE_URL
+# Tant que le secret CLOUDFLARE_API_TOKEN n'existe pas, l'étape de déploiement est ignorée.
+name: Déploiement
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  deployments: write
+
+concurrency:
+  group: deploy-production
+  cancel-in-progress: false
+
+jobs:
+  deployer:
+    name: Construire et publier
+    runs-on: ubuntu-latest
+    environment: production
+    env:
+      CF_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+
+      - run: npm ci
+
+      - name: Construire le site
+        run: npm run build
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_STATS_TOKEN || secrets.GITHUB_TOKEN }}
+          SITE_URL: ${{ vars.SITE_URL }}
+
+      - name: Publier sur Cloudflare Pages
+        if: ${{ env.CF_TOKEN != '' }}
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy dist --project-name=${{ vars.CF_PAGES_PROJECT }} --branch=main
+
+      - name: Déploiement ignoré
+        if: ${{ env.CF_TOKEN == '' }}
+        run: echo "::notice::Secret CLOUDFLARE_API_TOKEN absent, déploiement ignoré (voir AVANCEMENT.md)."

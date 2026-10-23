@@ -1,0 +1,59 @@
+# Intégration continue : vérifie chaque push et chaque pull request.
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verifier:
+    name: Types, tests, build, liens
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+
+      - name: Installer les dépendances (versions exactes du lockfile)
+        run: npm ci
+
+      - name: Audit de sécurité des dépendances
+        run: npm audit --audit-level=high
+
+      - name: Vérifier les types
+        run: npm run check
+
+      - name: Tests unitaires
+        run: npm test
+
+      - name: Construire le site
+        run: npm run build
+        env:
+          # Jeton en lecture seule pour l'API GitHub (graphe de contributions).
+          # Utilise GH_STATS_TOKEN s'il existe, sinon le jeton fourni par Actions.
+          GITHUB_TOKEN: ${{ secrets.GH_STATS_TOKEN || secrets.GITHUB_TOKEN }}
+          SITE_URL: ${{ vars.SITE_URL }}
+
+      - name: Vérifier les liens internes
+        uses: lycheeverse/lychee-action@v2
+        with:
+          args: --offline --no-progress --root-dir "${{ github.workspace }}/dist" "dist/**/*.html"
+          fail: true
+
+      - name: Conserver le site construit
+        uses: actions/upload-artifact@v4
+        with:
+          name: dist
+          path: dist
+          retention-days: 7

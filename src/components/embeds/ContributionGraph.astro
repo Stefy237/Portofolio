@@ -1,0 +1,99 @@
+---
+/**
+ * Graphe de contributions GitHub, construit au build à partir de l'API GraphQL.
+ * Aucune requête n'est faite depuis le navigateur du visiteur.
+ */
+import type { Contributions } from '../../lib/github';
+import Todo from '../ui/Todo.astro';
+
+interface Props {
+  data: Contributions | null;
+}
+
+const { data } = Astro.props;
+const label = data ? `${data.total} contributions GitHub sur les douze derniers mois` : '';
+---
+
+{
+  data ? (
+    <figure class="contrib">
+      <div class="contrib__scroll">
+        <div class="contrib__grid" role="img" aria-label={label}>
+          {data.weeks.map((week) => (
+            <div class="contrib__week">
+              {week.map((day) => (
+                <span class={`contrib__day l${day.level}`} title={`${day.count} le ${day.date}`} />
+              ))}
+            </div>
+          ))}
+        </div>
+      </div>
+      <figcaption class="contrib__caption">
+        <span>Lu sur GitHub au dernier déploiement</span>
+        <span class="contrib__legend" aria-hidden="true">
+          moins <i class="contrib__day l0" /><i class="contrib__day l1" /><i class="contrib__day l2" /><i class="contrib__day l3" /><i class="contrib__day l4" /> plus
+        </span>
+      </figcaption>
+    </figure>
+  ) : (
+    <Todo block label="Graphe de contributions : ajoute GITHUB_TOKEN dans .env (voir .env.example)" />
+  )
+}
+
+<style>
+  .contrib {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  /* direction: rtl fait démarrer le défilement sur les semaines les plus récentes, sans JavaScript. */
+  .contrib__scroll {
+    overflow-x: auto;
+    direction: rtl;
+    padding-bottom: 4px;
+  }
+  .contrib__grid {
+    direction: ltr;
+    display: inline-flex;
+    gap: 3px;
+  }
+  .contrib__week {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+  .contrib__day {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 2px;
+    background: var(--contrib-0);
+  }
+  .l1 {
+    background: var(--contrib-1);
+  }
+  .l2 {
+    background: var(--contrib-2);
+  }
+  .l3 {
+    background: var(--contrib-3);
+  }
+  .l4 {
+    background: var(--contrib-4);
+  }
+  .contrib__caption {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 8px;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    color: var(--muted);
+  }
+  .contrib__legend {
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+  }
+</style>

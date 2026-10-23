@@ -1,0 +1,55 @@
+---
+/**
+ * Emplacement « à compléter ».
+ * - En développement (npm run dev) : encadré en pointillés avec la consigne.
+ * - En production (npm run build) : rien n'est rendu, aucun texte provisoire ne fuit sur le site.
+ */
+interface Props {
+  /** Ce qu'il faut renseigner, et où. */
+  label: string;
+  /** Hauteur minimale indicative en px (pour les emplacements d'image ou de vidéo). */
+  block?: boolean;
+}
+
+const { label, block = false } = Astro.props;
+const show = import.meta.env.DEV;
+---
+
+{
+  show && (
+    <span class:list={['todo', { 'todo--block': block }]} title="Visible uniquement en développement">
+      <span class="todo__tag">À compléter</span> {label}
+    </span>
+  )
+}
+
+<style>
+  .todo {
+    display: inline-flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.4em;
+    padding: 0.15em 0.5em;
+    border: 1px dashed var(--todo-border);
+    border-radius: 6px;
+    background: var(--todo-bg);
+    color: var(--todo-text);
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    line-height: 1.5;
+  }
+  .todo--block {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 140px;
+    padding: 1rem;
+    text-align: center;
+  }
+  .todo__tag {
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-size: 0.7rem;
+  }
+</style>

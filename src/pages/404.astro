@@ -1,0 +1,39 @@
+---
+import Base from '../layouts/Base.astro';
+import { site } from '../config/site';
+---
+
+<Base title={`Page introuvable — ${site.name}`} bodyClass="err">
+  <main class="err__box">
+    <p class="err__code">laura@laura-os:~$ open {'<page>'}</p>
+    <p class="err__msg">open : cette page n'existe pas (erreur 404).</p>
+    <h1>Page introuvable</h1>
+    <p><a class="btn btn--primary" href="/">Revenir au bureau</a> <a class="btn" href="/simple">Version simple</a></p>
+  </main>
+</Base>
+
+<style>
+  .err__box {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 14px;
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 24px 16px;
+  }
+  .err__code,
+  .err__msg {
+    font-family: var(--font-mono);
+    font-size: 14px;
+  }
+  .err__msg {
+    color: var(--warn);
+  }
+  .err__box p:last-child {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+</style>

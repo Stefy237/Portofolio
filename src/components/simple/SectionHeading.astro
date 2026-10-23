@@ -1,0 +1,22 @@
+---
+/**
+ * Titre de section de la version simple : numéro, commande façon terminal, grand titre.
+ * Rappelle le bureau d'OS sans encadré.
+ */
+interface Props {
+  n: number;
+  cmd: string;
+  title: string;
+  id: string;
+}
+
+const { n, cmd, title, id } = Astro.props;
+---
+
+<header class="s-head">
+  <p class="s-head__meta" aria-hidden="true">
+    <span class="s-head__n">{String(n).padStart(2, '0')}</span>
+    <span class="s-head__cmd">$ {cmd}</span>
+  </p>
+  <h2 class="s-head__title" id={`${id}-titre`}>{title}</h2>
+</header>

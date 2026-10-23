@@ -1,0 +1,54 @@
+---
+/**
+ * Fenêtre du bureau. Fermée par défaut (attribut hidden) : c'est le gestionnaire de fenêtres
+ * (src/scripts/window-manager.ts) qui l'ouvre, la place, la déplace et la ferme.
+ * La géométrie par défaut passe par des attributs data-* (pas de style en ligne, pour la CSP).
+ */
+import type { AppMeta } from '../../apps/registry';
+import Icon from '../ui/Icon.astro';
+
+interface Props {
+  app: AppMeta;
+  /** 'terminal' : fond sombre et sans marge intérieure. 'flush' : sans marge intérieure. */
+  variant?: 'default' | 'terminal' | 'flush';
+}
+
+const { app, variant = 'default' } = Astro.props;
+const titleId = `win-${app.id}-title`;
+---
+
+<section
+  class:list={[
+    'window',
+    `window--${app.id}`,
+    { 'window--terminal window--flush': variant === 'terminal', 'window--flush': variant === 'flush' || app.flush },
+  ]}
+  id={`win-${app.id}`}
+  data-window={app.id}
+  data-x={app.geometry.x}
+  data-y={app.geometry.y}
+  data-w={app.geometry.w}
+  data-h={app.geometry.h}
+  data-open-on-start={app.openOnStart ? '' : undefined}
+  role="dialog"
+  aria-modal="false"
+  aria-labelledby={titleId}
+  tabindex="-1"
+  hidden
+>
+  <div class="window__bar" data-drag>
+    <button type="button" class="window__btn window__back" data-action="close" aria-label={`Retour à l'accueil (fermer ${app.label})`}>
+      <Icon name="back" size={20} /><span class="window__back-label">Accueil</span>
+    </button>
+    <h2 class="window__title" id={titleId}>{app.windowTitle}</h2>
+    <button type="button" class="window__btn window__btn--max" data-action="maximize" aria-label={`Agrandir ${app.label}`} aria-pressed="false">
+      <Icon name="maximize" size={15} />
+    </button>
+    <button type="button" class="window__btn window__btn--close" data-action="close" aria-label={`Fermer ${app.label}`}>
+      <Icon name="close" size={17} />
+    </button>
+  </div>
+  <div class="window__body">
+    <slot />
+  </div>
+</section>
