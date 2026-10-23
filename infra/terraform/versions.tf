@@ -6,7 +6,7 @@ terraform {
       source = "cloudflare/cloudflare"
       # Branche 4.x : la 5.x a renommé plusieurs ressources (ex. cloudflare_record → cloudflare_dns_record).
       # Voir AVANCEMENT.md pour la migration.
-      version = "~> 4.52"
+      version = "~> 5.28"
     }
   }
 
