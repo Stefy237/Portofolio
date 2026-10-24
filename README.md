@@ -1,4 +1,4 @@
-# laura·os — portfolio de Laura Nguegang Kowo
+# laura·os — portfolio Personnel
 
 Portfolio personnel présenté comme un **bureau de système d'exploitation dans le navigateur**. Les projets, le parcours, le homelab, les certifications et le dossier de candidature s'ouvrent dans des fenêtres. Un terminal, ouvert au démarrage, permet d'explorer le site en ligne de commande.
 
@@ -21,8 +21,6 @@ npm ci             # installe les versions exactes du package-lock.json
 cp .env.example .env   # facultatif : ajoute un GITHUB_TOKEN pour le graphe de contributions
 npm run dev        # http://localhost:4321
 ```
-
-En développement, chaque contenu manquant s'affiche dans un **encadré orange en pointillés « À compléter »**. En production, ces encadrés disparaissent complètement. À chaque build, le terminal affiche la liste de ce qui reste à renseigner.
 
 ## Scripts
 
@@ -86,8 +84,8 @@ En développement, chaque contenu manquant s'affiche dans un **encadré orange e
 
 Le site est conçu pour **Cloudflare Pages**. Ce choix permet les en-têtes de sécurité HTTP (`public/_headers`), ce que GitHub Pages ne permet pas, et la gestion du nom de domaine par Terraform.
 
-À chaque push sur `main`, GitHub Actions vérifie le code, construit le site et le publie. La procédure complète (compte, jeton, secrets, Terraform) est décrite dans [AVANCEMENT.md](./AVANCEMENT.md#étape-2--mettre-en-ligne).
+À chaque push sur `main`, GitHub Actions vérifie le code, construit le site et le publie.
 
 ## Licence
 
-Code : à définir (voir AVANCEMENT.md). Contenu (textes, CV, photo) : © Laura Nguegang Kowo, tous droits réservés.
+Code : à définir. Contenu (textes, CV, photo) : © Laura Nguegang Kowo, tous droits réservés.

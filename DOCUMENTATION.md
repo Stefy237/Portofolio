@@ -305,8 +305,8 @@ Pour vérifier une fois en ligne : [securityheaders.com](https://securityheaders
 | Secret        | `CLOUDFLARE_API_TOKEN`  | jeton Cloudflare, permission « Cloudflare Pages: Edit » |
 | Secret        | `CLOUDFLARE_ACCOUNT_ID` | identifiant du compte                                 |
 | Secret (opt.) | `GH_STATS_TOKEN`        | jeton GitHub en lecture seule pour le graphe          |
-| Variable      | `CF_PAGES_PROJECT`      | nom du projet Pages (ex. `portfolio-laura`)           |
-| Variable      | `SITE_URL`              | adresse publique (ex. `https://laura-nguegang.fr`)    |
+| Variable (opt.) | `CF_PAGES_PROJECT`    | nom du projet Pages (défaut : `laura-nguegang`)       |
+| Variable (opt.) | `SITE_URL`            | adresse publique (défaut : `https://laura-nguegang.pages.dev`) |
 
 Tant que `CLOUDFLARE_API_TOKEN` n'existe pas, l'étape de publication est ignorée sans faire échouer le workflow.
 

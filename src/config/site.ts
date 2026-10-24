@@ -23,29 +23,29 @@ export const site = {
   /** Trois faits marquants, affichés en grand en haut de la version simple. */
   keyFacts: [
     { title: "Stage de fin d'études chez Alstom", detail: 'Security Gateway, un produit de cybersécurité' },
-    { title: 'Docker Compose → Kubernetes', detail: "Migration et supervision Prometheus / Grafana d'Assista-Crise" },
+    { title: 'Docker Compose et supervision', detail: "Conteneurisation et supervision Prometheus / Grafana d'Assista-Crise" },
     { title: '3 certifications en préparation', detail: 'Terraform Associate · CKAD · AWS Solutions Architect' },
   ],
   /** Une phrase sur le poste recherché. */
-  lookingFor: '',
+  lookingFor: 'Un premier poste DevOps, DevSecOps ou SRE',
   location: 'Lyon / Villeurbanne',
-  availability: 'Disponible en CDI · octobre 2026',
+  availability: 'Disponible en CDI · Immédiatement',
   /** Mobilité et modes de travail acceptés. */
   mobility: 'France — sur site, hybride ou à distance',
   /** Affiché sous le nom dans la fenêtre Parcours, comme sur LinkedIn. */
   linkedinConnections: 'Plus de 500 relations',
 
   /** Adresse e-mail professionnelle : destinataire de la fenêtre Mail et des liens « M'écrire ». */
-  email: '',
+  email: 'ngueganglaura@gmail.com',
 
   links: {
     github: 'https://github.com/Stefy237',
     /** URL complète du profil LinkedIn. */
-    linkedin: '',
+    linkedin: 'https://www.linkedin.com/in/laura-nguegang-ab0a2b266/',
     /** URL complète du profil Malt. */
-    malt: '',
+    malt: 'https://www.malt.fr/profile/lauranguegang',
     /** Dépôt GitHub du code de ce site (lien « code du site »). */
-    siteRepo: '',
+    siteRepo: 'https://github.com/Stefy237/Portfolio',
   },
 
   /** Compte GitHub dont on lit les dépôts et les contributions au build. */
@@ -56,7 +56,7 @@ export const site = {
    * Sur LinkedIn : « … » sur le post > « Intégrer ce post » > copier l'adresse du src de l'iframe.
    * Elle doit commencer par https://www.linkedin.com/embed/feed/update/
    */
-  linkedinPostEmbedUrl: '',
+  linkedinPostEmbedUrl: 'https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:7516218784840359936?collapsed=1',
 
   /** Fichiers à déposer dans public/ (le site vérifie au build qu'ils existent). */
   documents: {
@@ -64,9 +64,9 @@ export const site = {
     lettre: '/documents/lettre-de-motivation.pdf',
   },
   /** Photo de profil, à déposer dans public/images/ (portrait, au moins 800 px de large). */
-  photo: '/images/photo.jpg',
+  photo: '/images/photo.webp',
   /** Bannière du profil (facultatif, format 4:1), à déposer dans public/images/. */
-  banner: '/images/banniere.jpg',
+  banner: '/images/banniere.webp',
 
   /** Vidéo de présentation : identifiant YouTube (la partie après v= dans l'URL). */
   videoYoutubeId: '',

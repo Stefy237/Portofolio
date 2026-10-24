@@ -18,7 +18,7 @@ export const ready = {
   lettre: publicFileExists(site.documents.lettre),
   photo: publicFileExists(site.photo),
   banner: publicFileExists(site.banner),
-  mail: site.email !== '',
+  mail: Boolean(site.email),
   video: site.videoYoutubeId !== '',
   linkedinPost: site.linkedinPostEmbedUrl.startsWith('https://www.linkedin.com/embed/'),
   recommandations: recommandations.length > 0,

@@ -1,7 +1,8 @@
 # Déploiement sur Cloudflare Pages à chaque push sur main (ou à la demande).
 # Prérequis (voir AVANCEMENT.md, « Mettre en ligne ») :
 #   - secrets du dépôt : CLOUDFLARE_API_TOKEN, CLOUDFLARE_ACCOUNT_ID
-#   - variables du dépôt : CF_PAGES_PROJECT (nom du projet Pages), SITE_URL
+#   - variables du dépôt (facultatives) : CF_PAGES_PROJECT (nom du projet Pages), SITE_URL
+#     Sans elles : projet « laura-nguegang », site https://laura-nguegang.pages.dev
 # Tant que le secret CLOUDFLARE_API_TOKEN n'existe pas, l'étape de déploiement est ignorée.
 name: Déploiement
 
@@ -39,7 +40,7 @@ jobs:
         run: npm run build
         env:
           GITHUB_TOKEN: ${{ secrets.GH_STATS_TOKEN || secrets.GITHUB_TOKEN }}
-          SITE_URL: ${{ vars.SITE_URL }}
+          SITE_URL: ${{ vars.SITE_URL || 'https://laura-nguegang.pages.dev' }}
 
       - name: Publier sur Cloudflare Pages
         if: ${{ env.CF_TOKEN != '' }}
@@ -47,7 +48,7 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: pages deploy dist --project-name=${{ vars.CF_PAGES_PROJECT }} --branch=main
+          command: pages deploy dist --project-name=${{ vars.CF_PAGES_PROJECT || 'laura-nguegang' }} --branch=main
 
       - name: Déploiement ignoré
         if: ${{ env.CF_TOKEN == '' }}

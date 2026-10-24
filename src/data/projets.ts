@@ -29,13 +29,13 @@ export const projets: Projet[] = [
     name: 'Assista-Crise',
     summary: 'Plateforme de gestion de crise avec IoT.',
     description:
-      "J'ai migré son architecture multi-services de Docker Compose vers Kubernetes, " +
+      "J'ai migré son architecture multi-services vers Docker Compose, " +
       'et mis en place la supervision avec Prometheus et Grafana : métriques, tableaux de bord et alertes.',
-    stack: ['Angular 19', 'Django 5', 'PostGIS', 'Redis', 'Docker', 'Kubernetes', 'MQTT', 'Meshtastic LoRa'],
-    repo: null, // à compléter si le dépôt est public
+    stack: ['Angular 19', 'Django 5', 'PostGIS', 'Redis', 'Docker', 'MQTT', 'Meshtastic LoRa'],
+    repo: 'sylvain-hazera/assista-crise-code-bis',
     demo: null,
     prod: 'https://assista-crise.fr',
-    language: null,
+    language: 'Python',
     featured: true,
   },
   {
@@ -45,24 +45,12 @@ export const projets: Projet[] = [
     description:
       "On choisit ses options et son gestionnaire de paquets, et l'outil génère un script d'installation sécurisé, " +
       'avec la marche à suivre pour annuler les changements.',
-    stack: [], // à compléter
+    stack: ['Bash', 'GitHub Actions'],
     repo: 'Stefy237/Mysh',
     demo: 'https://stefy237.github.io/Mysh',
     prod: null,
-    language: null,
+    language: 'Bash',
     featured: true,
-  },
-  {
-    slug: 'ecom',
-    name: 'eCOM',
-    summary: 'Application de planification du personnel.',
-    description: 'Application de planification du personnel, avec un pipeline de tests complet.',
-    stack: ['JHipster 8', 'Spring Boot 3', 'Angular'],
-    repo: null, // à compléter : « Stefy237/nom-du-depot »
-    demo: null,
-    prod: null,
-    language: null,
-    featured: false,
   },
   {
     slug: 'jdr-cli',
@@ -70,7 +58,7 @@ export const projets: Projet[] = [
     summary: 'Application en ligne de commande qui met en œuvre six design patterns.',
     description: 'Application en ligne de commande qui met en œuvre six design patterns.',
     stack: ['Java 17', 'Maven', 'SQLite', 'JUnit 5'],
-    repo: null, // à compléter
+    repo: 'Stefy237/projet-gl',
     demo: null,
     prod: null,
     language: 'Java',

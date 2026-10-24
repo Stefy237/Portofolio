@@ -1,6 +1,9 @@
 # Copie ce fichier en terraform.tfvars (il est ignoré par git) et remplis les valeurs.
 account_id   = "0123456789abcdef0123456789abcdef"
-zone_id      = "fedcba9876543210fedcba9876543210"
-project_name = "portfolio-laura"
-domain       = "laura-nguegang.fr"
-record_name  = "@"
+project_name = "laura-nguegang"
+
+# Facultatif : nom de domaine personnalisé. Laisse ces lignes commentées pour rester sur
+# https://laura-nguegang.pages.dev.
+# zone_id     = "fedcba9876543210fedcba9876543210"
+# domain      = "laura-nguegang.fr"
+# record_name = "@"

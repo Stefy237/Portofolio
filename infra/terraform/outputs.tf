@@ -5,5 +5,5 @@ output "pages_url" {
 
 output "site_url" {
   description = "Adresse publique du site."
-  value       = "https://${var.domain}"
+  value       = local.has_domain ? "https://${var.domain}" : "https://${cloudflare_pages_project.site.subdomain}"
 }

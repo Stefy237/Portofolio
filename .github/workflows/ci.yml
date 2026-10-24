@@ -43,7 +43,7 @@ jobs:
           # Jeton en lecture seule pour l'API GitHub (graphe de contributions).
           # Utilise GH_STATS_TOKEN s'il existe, sinon le jeton fourni par Actions.
           GITHUB_TOKEN: ${{ secrets.GH_STATS_TOKEN || secrets.GITHUB_TOKEN }}
-          SITE_URL: ${{ vars.SITE_URL }}
+          SITE_URL: ${{ vars.SITE_URL || 'https://laura-nguegang.pages.dev' }}
 
       - name: Vérifier les liens internes
         uses: lycheeverse/lychee-action@v2

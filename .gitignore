@@ -20,3 +20,6 @@ infra/terraform/.terraform.lock.hcl.bak
 *.log
 .vscode/
 .idea/
+
+# Images originales (non déployées, versions WebP dans public/images/)
+images-sources/

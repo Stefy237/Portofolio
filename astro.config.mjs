@@ -1,13 +1,17 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
+import sitemap from '@astrojs/sitemap';
 
 // URL publique du site : utilisée pour les liens canoniques et les métadonnées Open Graph.
-// À remplacer par ton nom de domaine (voir AVANCEMENT.md, étape « Mettre en ligne »).
-const SITE_URL = process.env.SITE_URL ?? 'https://laura-nguegang.example';
+// `||` et non `??` : en CI, une variable de dépôt absente arrive sous forme de chaîne vide.
+const SITE_URL = process.env.SITE_URL || 'https://laura-nguegang.pages.dev';
 
 export default defineConfig({
   site: SITE_URL,
   trailingSlash: 'ignore',
+  integrations: [sitemap()],
+  // Aucun Markdown sur le site, et Shiki injecte des styles en ligne incompatibles avec la CSP.
+  markdown: { syntaxHighlight: false },
   // La barre d'outils de développement d'Astro recouvrirait le dock.
   devToolbar: { enabled: false },
   build: {

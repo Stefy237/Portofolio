@@ -43,8 +43,10 @@ const current = phases.find((p) => p.status === 'en cours');
         <ul class="rows">
           {services.map((s) => (
             <li>
-              <span class="mono">{s.name}</span>
-              <span class="entry__meta">{s.role}</span>
+              <span>
+                <span class="mono">{s.name}</span> <span class="entry__meta">— {s.role}</span>
+              </span>
+              <span class:list={['pill', { 'pill--warn': s.status === 'en cours', 'pill--accent': s.status === 'en place' }]}>{s.status}</span>
             </li>
           ))}
         </ul>

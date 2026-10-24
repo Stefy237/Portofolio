@@ -18,3 +18,7 @@ updates:
     directory: /infra/terraform
     schedule:
       interval: monthly
+    ignore:
+      # La 5.x renomme des ressources (cloudflare_record → cloudflare_dns_record) : migration manuelle.
+      - dependency-name: cloudflare/cloudflare
+        update-types: ['version-update:semver-major']
