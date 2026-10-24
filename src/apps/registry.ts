@@ -44,7 +44,7 @@ export interface AppMeta {
   desktop: boolean;
   /** Bouton dans le dock (les 4 premiers restent visibles sur téléphone). */
   dock: boolean;
-  /** Fenêtre ouverte au chargement, sur ordinateur comme sur téléphone. */
+  /** Fenêtre ouverte au chargement, sur ordinateur uniquement (le téléphone affiche l'écran d'accueil). */
   openOnStart: boolean;
   /** Contenu sans marge intérieure (les fenêtres « plateforme » gèrent leur propre mise en page). */
   flush: boolean;

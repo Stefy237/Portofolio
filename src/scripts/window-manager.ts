@@ -6,7 +6,8 @@
  * - Fenêtres : premier plan au clic, déplacement par la barre de titre, redimensionnement par le coin,
  *   agrandissement (bouton ou double-clic sur la barre), fermeture (bouton ou Échap).
  * - Lien direct : /#projets ouvre la fenêtre Projets.
- * - Sous 768 px de large : pas de déplacement, les fenêtres s'ouvrent en plein écran.
+ * - Sous 768 px de large : pas de déplacement, les fenêtres s'ouvrent en cartes empilées (léger décalage),
+ *   et « agrandir » les passe en plein écran.
  * - Événements écoutés (envoyés par le terminal) : os:open et os:close, avec { detail: { id } }.
  */
 
@@ -14,6 +15,8 @@ const MOBILE = window.matchMedia('(max-width: 767px)');
 const MARGIN = 8;
 const MENUBAR = 36;
 const DOCK_SPACE = 104;
+/** Sur téléphone, décalage maximal (en crans) de la pile de fenêtres. */
+const MAX_CASCADE = 3;
 
 type Win = {
   id: string;
@@ -103,6 +106,9 @@ export function openWindow(id: string, opener: HTMLElement | null = null, moveFo
   if (wasHidden) {
     win.el.hidden = false;
     if (!MOBILE.matches && !win.placed) place(win);
+    // Sur téléphone, chaque fenêtre ouverte par-dessus une autre est un peu plus basse.
+    const others = [...windows.values()].filter((w) => w !== win && !w.el.hidden).length;
+    win.el.style.setProperty('--cascade', String(Math.min(others, MAX_CASCADE)));
     win.el.classList.add('is-opening');
     win.el.addEventListener('animationend', () => win.el.classList.remove('is-opening'), { once: true });
     if (opener) win.opener = opener;
@@ -112,7 +118,7 @@ export function openWindow(id: string, opener: HTMLElement | null = null, moveFo
     const field = win.el.querySelector<HTMLElement>('[data-term-input]');
     (field ?? win.el).focus({ preventScroll: true });
   }
-  if (MOBILE.matches) document.body.classList.add('has-fullscreen-window');
+  if (MOBILE.matches) document.body.classList.add('has-open-window');
   history.replaceState(null, '', `#${id}`);
   syncLaunchers();
 }
@@ -125,7 +131,7 @@ export function closeWindow(id: string): void {
   const next = topmostOpen();
   if (next) focusWin(next);
   else {
-    document.body.classList.remove('has-fullscreen-window');
+    document.body.classList.remove('has-open-window');
     history.replaceState(null, '', location.pathname + location.search);
   }
   const back = win.opener && document.contains(win.opener) ? win.opener : null;
@@ -136,7 +142,6 @@ export function closeWindow(id: string): void {
 }
 
 function toggleMaximize(win: Win): void {
-  if (MOBILE.matches) return;
   const on = win.el.classList.toggle('is-maximized');
   win.el.querySelector('[data-action="maximize"]')?.setAttribute('aria-pressed', String(on));
 }
@@ -242,15 +247,16 @@ export function initWindowManager(): void {
     windows.forEach((w) => {
       if (!MOBILE.matches && !w.el.hidden && !w.placed) place(w);
     });
-    if (!MOBILE.matches) document.body.classList.remove('has-fullscreen-window');
+    if (!MOBILE.matches) document.body.classList.remove('has-open-window');
   });
 
   // Fenêtres à ouvrir au démarrage
   const fromHash = location.hash.slice(1);
   if (fromHash && windows.has(fromHash)) {
     openWindow(fromHash, null, false);
-  } else {
-    // Ouvert au démarrage sur ordinateur comme sur téléphone (le terminal), pour comprendre l'idée tout de suite.
+  } else if (!MOBILE.matches) {
+    // Ouvert au démarrage sur ordinateur (le terminal), pour comprendre l'idée tout de suite.
+    // Sur téléphone, l'écran d'accueil reste visible : carte de présentation, post-it et icônes.
     document
       .querySelectorAll<HTMLElement>('[data-window][data-open-on-start]')
       .forEach((el) => openWindow(el.dataset.window!, null, false));

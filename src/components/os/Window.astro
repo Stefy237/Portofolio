@@ -37,9 +37,6 @@ const titleId = `win-${app.id}-title`;
   hidden
 >
   <div class="window__bar" data-drag>
-    <button type="button" class="window__btn window__back" data-action="close" aria-label={`Retour à l'accueil (fermer ${app.label})`}>
-      <Icon name="back" size={20} /><span class="window__back-label">Accueil</span>
-    </button>
     <h2 class="window__title" id={titleId}>{app.windowTitle}</h2>
     <button type="button" class="window__btn window__btn--max" data-action="maximize" aria-label={`Agrandir ${app.label}`} aria-pressed="false">
       <Icon name="maximize" size={15} />
